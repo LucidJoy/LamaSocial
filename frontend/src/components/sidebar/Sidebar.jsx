@@ -12,6 +12,8 @@ import {
 } from "@mui/icons-material";
 
 import "./sidebar.css";
+import SidebarFriend from "../sidebarFriend/SidebarFriend";
+import { Users } from "../../dummyData";
 
 const Sidebar = () => {
   return (
@@ -59,22 +61,9 @@ const Sidebar = () => {
         <button className='sidebarButton'>Show More</button>
         <hr className='sidebarHr' />
         <ul className='sidebarFriendList'>
-          <li className='sidebarFriend'>
-            <img className='sidebarFriendImg' src='/assets/person/2.jpeg' />
-            <span className='sidebarFriendName'>Jane Doe</span>
-          </li>
-          <li className='sidebarFriend'>
-            <img className='sidebarFriendImg' src='/assets/person/2.jpeg' />
-            <span className='sidebarFriendName'>Jane Doe</span>
-          </li>
-          <li className='sidebarFriend'>
-            <img className='sidebarFriendImg' src='/assets/person/2.jpeg' />
-            <span className='sidebarFriendName'>Jane Doe</span>
-          </li>
-          <li className='sidebarFriend'>
-            <img className='sidebarFriendImg' src='/assets/person/2.jpeg' />
-            <span className='sidebarFriendName'>Jane Doe</span>
-          </li>
+          {Users.map((u) => (
+            <SidebarFriend key={u.id} user={u} />
+          ))}
         </ul>
       </div>
     </div>
