@@ -1,5 +1,6 @@
 import React from "react";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import "./topbar.css";
 
@@ -7,7 +8,9 @@ const Topbar = () => {
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
-        <span className='logo'>LamaSocial</span>
+        <Link to='/' style={{ textDecoration: "none" }}>
+          <span className='logo'>LamaSocial</span>
+        </Link>
       </div>
 
       <div className='topbarCenter'>
