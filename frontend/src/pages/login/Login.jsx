@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
@@ -9,6 +9,7 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -17,7 +18,10 @@ const Login = () => {
       dispatch
     );
   };
-  console.log(user);
+
+  const handleCreate = () => {
+    navigate("/register");
+  };
 
   return (
     <div className='login'>
@@ -50,7 +54,11 @@ const Login = () => {
               {isFetching ? "Loading..." : "Log In"}
             </button>
             <span className='loginForgot'>Forgot Password</span>
-            <button className='loginRegisterButton' disabled={isFetching}>
+            <button
+              className='loginRegisterButton'
+              onClick={handleCreate}
+              disabled={isFetching}
+            >
               {isFetching ? "Loading..." : "Create Account"}
             </button>
           </form>

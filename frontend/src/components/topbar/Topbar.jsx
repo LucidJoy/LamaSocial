@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 import "./topbar.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className='topbarContainer'>
       <div className='topbarLeft'>
@@ -44,7 +47,17 @@ const Topbar = () => {
           </div>
         </div>
 
-        <img src='/assets/person/1.jpeg' alt='' className='topbarImage' />
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={
+              user.profilePicture
+                ? user.profilePicture
+                : "https://images.unsplash.com/photo-1579546928686-286c9fbde1ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=339&q=80"
+            }
+            alt=''
+            className='topbarImage'
+          />
+        </Link>
       </div>
     </div>
   );
