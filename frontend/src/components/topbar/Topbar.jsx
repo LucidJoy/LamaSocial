@@ -52,7 +52,7 @@ const Topbar = () => {
             src={
               user.profilePicture
                 ? user.profilePicture
-                : "https://images.unsplash.com/photo-1579546928686-286c9fbde1ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=339&q=80"
+                : process.env.REACT_APP_DEFAULT_PROFILE
             }
             alt=''
             className='topbarImage'
