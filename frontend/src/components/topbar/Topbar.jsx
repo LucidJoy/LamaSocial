@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Topbar = () => {
   const { user } = useContext(AuthContext);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className='topbarContainer'>
@@ -51,8 +52,8 @@ const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? user.profilePicture
-                : process.env.REACT_APP_DEFAULT_PROFILE
+                ? PF + user.profilePicture
+                : PF + "person/noAvatar.png"
             }
             alt=''
             className='topbarImage'

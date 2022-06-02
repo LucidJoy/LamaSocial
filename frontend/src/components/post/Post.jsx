@@ -44,8 +44,8 @@ const Post = ({ post }) => {
                 className='postProfileImg'
                 src={
                   user.profilePicture
-                    ? user.profilePicture
-                    : process.env.REACT_APP_DEFAULT_PROFILE
+                    ? PF + user.profilePicture
+                    : PF + "person/noAvatar.png"
                 }
                 alt=''
               />

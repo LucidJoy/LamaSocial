@@ -53,7 +53,27 @@ router.get("/", async (req, res) => {
     const { password, createdAt, updatedAt, ...others } = user._doc;
     res.status(200).json(others);
   } catch (error) {
-    return res.status(200).json(error);
+    return res.status(500).json(error);
+  }
+});
+
+//get friends
+router.get("/friends/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.following.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendList);
+  } catch (error) {
+    return res.status(500).json(error);
   }
 });
 

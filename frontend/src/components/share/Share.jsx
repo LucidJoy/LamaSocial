@@ -9,6 +9,7 @@ const Share = () => {
   const { user } = useContext(AuthContext);
   const [file, setFile] = useState(null);
   const desc = useRef();
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -45,8 +46,8 @@ const Share = () => {
             className='shareProfileImg'
             src={
               user.profilePicture
-                ? user.profilePicture
-                : process.env.REACT_APP_DEFAULT_PROFILE
+                ? PF + user.profilePicture
+                : PF + "person/noAvatar.png"
             }
             alt=''
           />
