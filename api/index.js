@@ -10,6 +10,8 @@ const path = require("path");
 const userRoute = require("./router/users");
 const authRoute = require("./router/auth");
 const postRoute = require("./router/posts");
+const conversationRoute = require("./router/conversations");
+const messageRoute = require("./router/messages");
 
 dotenv.config();
 
@@ -45,6 +47,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 
 app.get("/", (req, res) => {
   res.send("welcome to homepage!");
