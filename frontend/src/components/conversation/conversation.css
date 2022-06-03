@@ -1,0 +1,25 @@
+.coversation {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 90%;
+  border-radius: 10px;
+}
+
+.coversation:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.coversationImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.coversationName {
+  font-weight: 500;
+}

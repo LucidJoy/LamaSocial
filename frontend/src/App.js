@@ -11,6 +11,7 @@ import { useContext } from "react";
 import Login from "./pages/login/Login.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import Register from "./pages/register/Register.jsx";
+import Messenger from "./pages/messenger/Messenger.jsx";
 import { AuthContext } from "./context/AuthContext.js";
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
         <Route
           path='/register'
           element={user ? <Navigate to='/' /> : <Register />}
+        />
+        <Route
+          path='/messenger'
+          element={!user ? <Navigate to='/' /> : <Messenger />}
         />
         <Route path='/profile/:username' element={<Profile />} />
       </Routes>

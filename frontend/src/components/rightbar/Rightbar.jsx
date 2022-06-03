@@ -12,7 +12,7 @@ const Rightbar = ({ user }) => {
   const { user: currentuser, dispatch } = useContext(AuthContext);
   const [friends, setFriends] = useState([]);
   const [isFollowed, setIsFollowed] = useState(
-    currentuser.following.includes(user?.id)
+    currentuser?.following?.includes(user?.id)
   );
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
