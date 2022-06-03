@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
 import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
@@ -14,6 +14,7 @@ const Messenger = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useContext(AuthContext);
+  const scrollRef = useRef();
 
   useEffect(() => {
     const getConversations = async () => {
@@ -39,7 +40,26 @@ const Messenger = () => {
     getMessages();
   }, [currentChat]);
 
-  console.log(messages);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const message = {
+      sender: user._id,
+      text: newMessage,
+      conversationId: currentChat._id,
+    };
+
+    try {
+      const res = await axios.post(`/messages`, message);
+      setMessages([...messages, res.data]);
+      setNewMessage("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <>
@@ -66,7 +86,9 @@ const Messenger = () => {
               <>
                 <div className='chatBoxTop'>
                   {messages.map((m) => (
-                    <Message message={m} own={m.sender === user._id} />
+                    <div ref={scrollRef}>
+                      <Message message={m} own={m.sender === user._id} />
+                    </div>
                   ))}
                 </div>
 
