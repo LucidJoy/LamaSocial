@@ -1,16 +1,43 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 import "./conversation.css";
 
-const Conversation = () => {
+const Conversation = ({ conversation, currentUser }) => {
+  const [user, setUser] = useState(null);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  useEffect(() => {
+    const friendId = conversation.members.find(
+      (fID) => fID !== currentUser._id
+    );
+
+    const getUser = async () => {
+      try {
+        const res = await axios.get(`/users?userId=${friendId}`);
+        setUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, [currentUser, conversation]);
+
   return (
-    <div className='coversation'>
+    <div className='conversation'>
       <img
-        src='https://images.unsplash.com/photo-1474978528675-4a50a4508dc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+        src={
+          user?.profilePicture
+            ? PF + user?.profilePicture
+            : PF + "person/noAvatar.png"
+        }
         alt=''
-        className='coversationImg'
+        className='conversationImg'
       />
-      <span className='coversationName'>John Doe</span>
+      <span className='conversationName'>
+        {user?.username.charAt(0).toUpperCase()}
+        {user?.username.slice(1)}
+      </span>
     </div>
   );
 };

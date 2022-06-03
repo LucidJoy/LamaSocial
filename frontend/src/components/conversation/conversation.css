@@ -1,4 +1,4 @@
-.coversation {
+.conversation {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -9,17 +9,17 @@
   border-radius: 10px;
 }
 
-.coversation:hover {
+.conversation:hover {
   background-color: rgb(240, 240, 240);
 }
 
-.coversationImg {
+.conversationImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.coversationName {
+.conversationName {
   font-weight: 500;
 }
