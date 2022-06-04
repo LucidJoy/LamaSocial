@@ -14,20 +14,28 @@ import {
 import "./sidebar.css";
 import SidebarFriend from "../sidebarFriend/SidebarFriend";
 import { Users } from "../../dummyData";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='sidebarWrapper'>
         <ul className='sidebarList'>
-          <li className='sidebarListItem'>
-            <RssFeed className='sidebarIcon' />
-            <span className='sidebarListItemText'>Feed</span>
-          </li>
-          <li className='sidebarListItem'>
-            <Chat className='sidebarIcon' />
-            <span className='sidebarListItemText'>Chats</span>
-          </li>
+          <Link to='/' style={{ textDecoration: "none", color: "black" }}>
+            <li className='sidebarListItem'>
+              <RssFeed className='sidebarIcon' />
+              <span className='sidebarListItemText'>Feed</span>
+            </li>
+          </Link>
+          <Link
+            to='/messenger'
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <li className='sidebarListItem'>
+              <Chat className='sidebarIcon' />
+              <span className='sidebarListItemText'>Chats</span>
+            </li>
+          </Link>
           <li className='sidebarListItem'>
             <PlayCircleFilledOutlined className='sidebarIcon' />
             <span className='sidebarListItemText'>Videos</span>
